@@ -1,0 +1,4052 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    color: #122d4d;
+    background: #fff;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+.container {
+    width: min(94%, 1180px);
+    margin: auto;
+}
+
+
+/* =========================================================
+   COLORS
+========================================================= */
+
+:root {
+
+    --blue: #075b91;
+    --dark-blue: #073b68;
+    --deep-blue: #043d70;
+
+    --green: #637f2c;
+    --dark-green: #286c58;
+
+    --yellow: #ffc400;
+
+    --text: #122d4d;
+
+    --light-bg: #f8f9f8;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 20;
+
+    color: white;
+
+    padding: 20px 0;
+
+}
+
+
+.header-inner {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+}
+
+
+/* LOGO */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    min-width: 190px;
+
+}
+
+
+.logo-icon {
+
+    font-size: 34px;
+
+}
+
+
+.logo-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.logo-text strong {
+
+    font-size: 15px;
+
+    letter-spacing: .5px;
+
+}
+
+
+.logo-text span {
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    margin-top: 2px;
+
+}
+
+
+/* NAV */
+
+.main-nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+}
+
+
+.main-nav a {
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    position: relative;
+
+    white-space: nowrap;
+
+}
+
+
+.main-nav a::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+
+    height: 2px;
+
+    background: var(--yellow);
+
+    left: 0;
+
+    bottom: -10px;
+
+    transition: .3s;
+
+}
+
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+
+    width: 100%;
+
+}
+
+
+/* HEADER BUTTON */
+
+.header-button {
+
+    background: var(--yellow);
+
+    color: #111;
+
+    padding: 12px 17px;
+
+    border-radius: 5px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    gap: 8px;
+
+    align-items: center;
+
+    white-space: nowrap;
+
+}
+
+
+.header-button:hover {
+
+    background: #fff;
+
+}
+
+
+/* MOBILE MENU */
+
+.mobile-menu {
+
+    display: none;
+
+    background: transparent;
+
+    border: 0;
+
+    color: white;
+
+    font-size: 24px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+/* =========================================================
+   HERO SLIDER
+========================================================= */
+
+.hero-slider {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 600px;
+
+    overflow: hidden;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   EACH SLIDE
+========================================================= */
+
+.hero-slide {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-size: cover;
+
+    background-position: center center;
+
+    background-repeat: no-repeat;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: scale(1.03);
+
+    transition:
+        opacity 0.9s ease,
+        transform 5s ease;
+
+}
+
+
+.hero-slide.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: scale(1);
+
+}
+
+
+/* =========================================================
+   DARK OVERLAY
+========================================================= */
+
+.hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2, 49, 86, .90) 0%,
+            rgba(2, 58, 96, .72) 25%,
+            rgba(2, 58, 96, .30) 52%,
+            rgba(0, 0, 0, .05) 80%
+        );
+
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-slide .container {
+
+    height: 100%;
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.hero-slide-content {
+
+    width: 550px;
+
+    padding-top: 40px;
+
+    opacity: 0;
+
+    transform: translateX(-30px);
+
+}
+
+
+.hero-slide.active .hero-slide-content {
+
+    animation:
+        heroContentIn .8s ease forwards;
+
+    animation-delay: .25s;
+
+}
+
+
+@keyframes heroContentIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateX(-30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateX(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   SCRIPT TITLE
+========================================================= */
+
+.hero-script {
+
+    font-family: "Pacifico", cursive;
+
+    color: #ffc400;
+
+    font-size: 21px;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* =========================================================
+   MAIN HEADING
+========================================================= */
+
+.hero-slide-content h1 {
+
+    font-size: clamp(48px, 5vw, 70px);
+
+    line-height: .98;
+
+    font-weight: 700;
+
+    letter-spacing: -2px;
+
+    margin: 0;
+
+}
+
+
+.hero-slide-content h1 span {
+
+    font-family: "Pacifico", cursive;
+
+    color: #ffc400;
+
+    font-weight: 400;
+
+    letter-spacing: 0;
+
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.hero-slide-content p {
+
+    max-width: 490px;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+    margin: 22px 0;
+
+    color: rgba(255,255,255,.95);
+
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 14px;
+
+    align-items: center;
+
+}
+
+
+.hero-buttons .btn {
+
+    min-height: 45px;
+
+    padding: 0 19px;
+
+    border-radius: 4px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    transition: .3s ease;
+
+}
+
+
+.hero-buttons .btn-yellow {
+
+    background: #ffc400;
+
+    color: #111;
+
+}
+
+
+.hero-buttons .btn-yellow:hover {
+
+    background: white;
+
+    transform: translateY(-2px);
+
+}
+
+
+.hero-buttons .btn-outline {
+
+    border: 1px solid rgba(255,255,255,.9);
+
+    background: rgba(0,0,0,.12);
+
+    color: white;
+
+}
+
+
+.hero-buttons .btn-outline:hover {
+
+    background: white;
+
+    color: #064477;
+
+}
+
+
+/* =========================================================
+   SLIDER ARROWS
+========================================================= */
+
+.hero-arrow {
+
+    position: absolute;
+
+    z-index: 5;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 44px;
+
+    height: 44px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.6);
+
+    background: rgba(0,0,0,.15);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+
+}
+
+
+.hero-arrow:hover {
+
+    background: #ffc400;
+
+    color: #111;
+
+    border-color: #ffc400;
+
+}
+
+
+.hero-prev {
+
+    left: 25px;
+
+}
+
+
+.hero-next {
+
+    right: 25px;
+
+}
+
+
+/* =========================================================
+   SLIDER DOTS
+========================================================= */
+
+.hero-dots {
+
+    position: absolute;
+
+    z-index: 6;
+
+    left: 50%;
+
+    bottom: 65px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+.hero-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    padding: 0;
+
+    border: 1px solid white;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+
+}
+
+
+.hero-dot.active {
+
+    width: 28px;
+
+    border-radius: 10px;
+
+    background: #ffc400;
+
+    border-color: #ffc400;
+
+}
+
+
+
+
+/* =========================================================
+   SLIDE 2 CONTENT
+========================================================= */
+
+/* =========================================================
+   SLIDE 2 - LARGER TYPOGRAPHY
+========================================================= */
+
+.slide-two-content {
+    width: 550px;
+    padding-top: 35px;
+}
+
+
+/* SMALL LABEL */
+
+.slide-label {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.slide-label span {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #163853;
+}
+
+.slide-label i {
+    width: 55px;
+    height: 2px;
+    background: #f5b900;
+}
+
+
+/* MAIN HEADING */
+
+.slide-two-content h1 {
+
+    font-family: "Playfair Display", serif;
+
+    color: #143853;
+
+    font-size: 58px;
+
+    line-height: 1.02;
+
+    letter-spacing: -1.5px;
+
+    font-weight: 600;
+
+    margin: 0 0 18px;
+}
+
+
+/* SCRIPT TEXT */
+
+.slide-two-content h1 span {
+
+    font-family: "Pacifico", cursive;
+
+    color: #f5b900;
+
+    font-size: 52px;
+
+    font-weight: 400;
+
+    letter-spacing: 0;
+
+}
+
+
+/* DESCRIPTION */
+
+.slide-two-content p {
+
+    max-width: 480px;
+
+    color: #29455e;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    font-weight: 500;
+
+    margin: 0 0 22px;
+}
+
+
+/* BUTTON */
+
+.slide-two-content .btn-navy {
+
+    min-height: 48px;
+
+    padding: 0 23px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: .2px;
+
+}
+
+
+/* ARROW */
+
+.slide-two-content .btn-navy i {
+
+    font-size: 10px;
+
+    margin-left: 7px;
+
+}
+/* Slide 2 uses dark text */
+/* =========================================================
+   SLIDE 2 OVERLAY
+========================================================= */
+
+.hero-slide:nth-child(2) .hero-overlay {
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        /* DARK HEADER GRADIENT - keeps white menu visible */
+        linear-gradient(
+            to bottom,
+            rgba(3, 52, 88, 0.92) 0px,
+            rgba(3, 52, 88, 0.82) 70px,
+            rgba(3, 52, 88, 0.45) 125px,
+            rgba(255, 255, 255, 0.05) 190px
+        ),
+
+        /* LIGHT LEFT CONTENT AREA */
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.94) 0%,
+            rgba(255, 255, 255, 0.86) 35%,
+            rgba(255, 255, 255, 0.35) 60%,
+            rgba(255, 255, 255, 0) 100%
+        );
+
+}
+
+
+.slide-two-content {
+    position: relative;
+    z-index: 10;
+
+    width: 550px;
+}
+
+
+/* Make sure the button container is visible */
+
+.slide-two-content .hero-buttons {
+    display: flex !important;
+
+    position: relative;
+    z-index: 20;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    margin-top: 10px;
+}
+
+
+/* Slide 2 button */
+
+.slide-two-content .btn-navy {
+
+    display: inline-flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    position: relative;
+    z-index: 30;
+
+    background: #07385f;
+
+    color: #ffffff;
+
+    border: 1px solid #07385f;
+
+    min-height: 48px;
+
+    padding: 0 24px;
+
+    border-radius: 4px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    gap: 10px;
+
+    transition: all .3s ease;
+}
+
+
+.slide-two-content .btn-navy:hover {
+
+    background: #f5b900;
+
+    border-color: #f5b900;
+
+    color: #07385f;
+
+    transform: translateY(-2px);
+}
+
+
+.slide-two-content .btn-navy i {
+
+    display: inline-block;
+
+    color: inherit;
+
+    font-size: 10px;
+
+    margin-left: 3px;
+}
+
+
+
+
+/* =========================================================
+   SLIDE 3
+========================================================= */
+
+.slide-three-content {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 80px;
+
+    padding-top: 35px;
+
+}
+
+
+/* =========================================================
+   SLIDE 3 LEFT
+========================================================= */
+
+.slide-three-left {
+
+    width: 510px;
+
+}
+
+
+.slide-three-label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.slide-three-label span {
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+}
+
+
+.slide-three-label i {
+
+    width: 45px;
+
+    height: 2px;
+
+    background: #10b8bd;
+
+}
+
+
+/* =========================================================
+   SLIDE 3 HEADING
+========================================================= */
+
+.slide-three-left h1 {
+
+    font-family: "Playfair Display", serif;
+
+    color: white;
+
+    font-size: 58px;
+
+    line-height: 1.02;
+
+    font-weight: 600;
+
+    letter-spacing: -1.5px;
+
+    margin: 0 0 18px;
+
+}
+
+
+.slide-three-left h1 span {
+
+    font-family: "Pacifico", cursive;
+
+    color: #16b7bc;
+
+    font-size: 52px;
+
+    font-weight: 400;
+
+    letter-spacing: 0;
+
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.slide-three-left p {
+
+    max-width: 430px;
+
+    color: white;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    margin: 0 0 20px;
+
+}
+
+
+/* =========================================================
+   TEAL BUTTON
+========================================================= */
+
+.btn-teal {
+
+    min-height: 44px;
+
+    padding: 0 20px;
+
+    background: #12b6bc;
+
+    color: white;
+
+    border-radius: 3px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    transition: .3s ease;
+
+}
+
+
+.btn-teal:hover {
+
+    background: white;
+
+    color: #07385f;
+
+    transform: translateY(-2px);
+
+}
+
+
+.btn-teal i {
+
+    font-size: 9px;
+
+}
+
+
+/* =========================================================
+   RIGHT FEATURES
+========================================================= */
+
+.slide-three-features {
+
+    width: 260px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+}
+
+
+.slide-feature {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    color: white;
+
+}
+
+
+.slide-feature i {
+
+    width: 22px;
+
+    color: #10b8bd;
+
+    font-size: 17px;
+
+    text-align: center;
+
+}
+
+
+.slide-feature span {
+
+    font-size: 10px;
+
+    line-height: 1.45;
+
+    color: white;
+
+}
+
+/* =========================================================
+   BOOKING BAR
+========================================================= */
+
+.booking-wrapper {
+
+    position: relative;
+
+    z-index: 10;
+
+    margin-top: -48px;
+
+}
+
+
+.booking-bar {
+    background: #064477;
+    border-radius: 10px;
+
+    padding: 19px 28px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        .8fr
+        auto;
+
+    gap: 16px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .18);
+}
+
+
+.booking-field label {
+
+    display: block;
+
+    color: white;
+
+    font-size: 10px;
+
+    margin-bottom: 6px;
+
+}
+
+
+.input-box {
+
+    height: 40px;
+
+    border: 1px solid rgba(255,255,255,.45);
+
+    border-radius: 4px;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 12px;
+
+    font-size: 11px;
+
+}
+
+
+.booking-button {
+
+    align-self: end;
+
+    height: 40px;
+
+    border: 0;
+
+    background: var(--yellow);
+
+    padding: 0 28px;
+
+    border-radius: 4px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+/* =========================================================
+   APARTMENT SELECT
+========================================================= */
+
+.select-box {
+    position: relative;
+    padding: 0;
+}
+
+.select-box select {
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    padding: 0 35px 0 12px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
+.select-box select option {
+
+    color: #122d4d;
+
+    background: white;
+
+    padding: 10px;
+}
+
+
+.select-box > i {
+
+    position: absolute;
+
+    right: 12px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: white;
+
+    font-size: 10px;
+
+    pointer-events: none;
+}
+
+@media (max-width: 850px) {
+
+    .booking-bar {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 15px;
+
+    }
+
+    .apartment-field {
+
+        grid-column: 1 / -1;
+
+    }
+
+    .booking-button {
+
+        width: 100%;
+
+    }
+
+}
+@media (max-width: 550px) {
+
+    .booking-bar {
+
+        grid-template-columns: 1fr;
+
+        padding: 20px;
+
+    }
+
+    .apartment-field {
+
+        grid-column: auto;
+
+    }
+
+    .booking-button {
+
+        width: 100%;
+
+    }
+
+}
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.welcome-section {
+
+    padding: 75px 0 45px;
+
+}
+
+
+.welcome-grid {
+
+    display: grid;
+
+    grid-template-columns: .85fr 1.15fr;
+
+    gap: 55px;
+
+    align-items: center;
+
+}
+
+
+.welcome-content {
+
+    padding-left: 15px;
+
+}
+
+
+.section-script {
+
+    color: #f4a900;
+
+    font-size: 19px;
+
+}
+
+
+.welcome-content h2 {
+
+    font-size: 31px;
+
+    line-height: 1.15;
+
+    margin: 5px 0 18px;
+
+}
+
+
+.welcome-content h2 strong {
+
+    display: block;
+
+}
+
+
+.welcome-content p {
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    margin-bottom: 14px;
+
+    color: #37495e;
+
+}
+
+
+.yellow-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background: var(--yellow);
+
+    padding: 13px 17px;
+
+    margin-top: 5px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    border-radius: 3px;
+
+}
+
+
+.yellow-link:hover {
+
+    background: var(--dark-blue);
+
+    color: white;
+
+}
+
+
+/* WELCOME PROPERTY */
+
+.welcome-properties {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+
+}
+
+
+.small-property {
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.1);
+
+}
+
+
+.property-image {
+
+    height: 235px;
+
+}
+
+
+.property-image img {
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.property-info {
+
+    padding: 14px 17px 16px;
+
+    color: white;
+
+}
+
+
+.property-info.green {
+
+    background: var(--green);
+
+}
+
+
+.property-info.blue {
+
+    background: var(--blue);
+
+}
+
+
+.property-info h3 {
+
+    font-size: 12px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.property-info p {
+
+    color: white;
+
+    font-size: 10px;
+
+    margin: 0 0 3px;
+
+}
+
+
+.property-info span {
+
+    font-size: 9px;
+
+}
+
+
+/* =========================================================
+   WHY STAY
+========================================================= */
+
+.why-section {
+
+    background: #f8f9f9;
+
+    padding: 22px 0 35px;
+
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: baseline;
+
+    gap: 5px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.section-heading h2 {
+
+    font-size: 29px;
+
+    line-height: 1;
+
+}
+
+
+.blue-script {
+
+    color: #168bd4;
+
+}
+
+
+.features-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+}
+
+
+.feature {
+
+    text-align: center;
+
+    padding: 0 15px;
+
+    border-right: 1px solid #ddd;
+
+}
+
+
+.feature:last-child {
+
+    border-right: 0;
+
+}
+
+
+.feature-icon {
+
+    width: 53px;
+
+    height: 53px;
+
+    border-radius: 50%;
+
+    margin: 0 auto 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 23px;
+
+    background: white;
+
+}
+
+
+.green-icon {
+
+    color: #688a45;
+
+}
+
+
+.yellow-icon {
+
+    color: #ffbd00;
+
+}
+
+
+.blue-icon {
+
+    color: #1385da;
+
+}
+
+
+.pink-icon {
+
+    color: #e65589;
+
+}
+
+
+.teal-icon {
+
+    color: #19a8aa;
+
+}
+
+
+.purple-icon {
+
+    color: #7744d2;
+
+}
+
+
+.feature h3 {
+
+    font-size: 10px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.feature p {
+
+    font-size: 9px;
+
+    line-height: 1.6;
+
+    color: #4b5662;
+
+}
+
+
+/* =========================================================
+   PROPERTIES
+========================================================= */
+
+.properties-section {
+
+    padding: 30px 0 30px;
+
+}
+
+
+.property-large-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+}
+
+
+.large-property {
+
+    position: relative;
+
+    height: 340px;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+}
+
+
+.large-property-image {
+
+    width: 60%;
+
+    height: 100%;
+
+}
+
+
+.large-property-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.large-property-content {
+
+    position: absolute;
+
+    right: 0;
+
+    top: 0;
+
+    width: 46%;
+
+    height: 100%;
+
+    color: white;
+
+    padding: 20px 18px;
+
+}
+
+
+.large-property-content.green {
+
+    background: var(--dark-green);
+
+}
+
+
+.large-property-content.blue {
+
+    background: var(--blue);
+
+}
+
+
+.large-property-content h3 {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 20px;
+
+    line-height: 1.15;
+
+}
+
+
+.location-script {
+
+    color: var(--yellow);
+
+    font-size: 17px;
+
+    margin: 2px 0 13px;
+
+}
+
+
+.large-property-content p {
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+}
+
+
+.large-property-content ul {
+
+    list-style: none;
+
+    margin: 13px 0;
+
+}
+
+
+.large-property-content li {
+
+    font-size: 9px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.large-property-content li i {
+
+    margin-right: 7px;
+
+}
+
+
+.property-button {
+
+    background: white;
+
+    color: #315e53;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 13px;
+
+    border-radius: 3px;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+}
+
+
+.blue .property-button {
+
+    color: var(--blue);
+
+}
+
+
+.property-button:hover {
+
+    background: var(--yellow);
+
+    color: #111;
+
+}
+
+
+/* =========================================================
+   EXPLORE
+========================================================= */
+
+.explore-section {
+
+    padding: 0 0 30px;
+
+}
+
+
+.explore-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 13px;
+
+}
+
+
+.explore-card {
+
+    overflow: hidden;
+
+}
+
+
+.explore-card img {
+
+    height: 120px;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+
+}
+
+
+.explore-info {
+
+    padding-top: 7px;
+
+}
+
+
+.explore-info h3 {
+
+    font-size: 14px;
+
+    margin-bottom: 3px;
+
+}
+
+
+.explore-info h3 i {
+
+    color: #549d76;
+
+    margin-right: 4px;
+
+}
+
+
+.explore-info p {
+
+    font-size: 12px;
+
+    line-height: 1.4;
+
+    color: #55616d;
+
+}
+
+
+.center-button {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 22px;
+
+}
+
+
+.dark-button {
+
+    background: var(--dark-blue);
+
+    color: white;
+
+    padding: 11px 25px;
+
+    font-size: 9px;
+
+    border-radius: 4px;
+
+    font-weight: 700;
+
+}
+
+
+.dark-button:hover {
+
+    background: var(--yellow);
+
+    color: #111;
+
+}
+
+
+/* =========================================================
+   ACTIVITIES
+========================================================= */
+
+.activities-section {
+
+    background: var(--dark-green);
+
+    color: white;
+
+    padding: 18px 0;
+
+}
+
+
+.activities-inner {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+}
+
+
+.activities-heading {
+
+    min-width: 330px;
+
+}
+
+
+.yellow-script {
+
+    color: var(--yellow);
+
+    font-size: 17px;
+
+}
+
+
+.activities-heading h2 {
+
+    font-size: 24px;
+
+}
+
+
+.activity-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(8, 1fr);
+
+    flex: 1;
+
+}
+
+
+.activity {
+
+    text-align: center;
+
+    border-right: 1px solid rgba(255,255,255,.15);
+
+}
+
+
+.activity:last-child {
+
+    border-right: 0;
+
+}
+
+
+.activity i {
+
+    display: block;
+
+    font-size: 21px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.activity span {
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta-section {
+
+    min-height: 170px;
+
+    background-image:
+        url("images/car-park.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    position: relative;
+
+    color: white;
+
+}
+
+
+.cta-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,44,82,.85),
+            rgba(0,56,92,.4)
+        );
+
+}
+
+
+.cta-content {
+
+    position: relative;
+
+    min-height: 170px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+
+}
+
+
+.cta-title h2 {
+
+    font-size: 32px;
+
+    line-height: 1;
+
+}
+
+
+.cta-script {
+
+    color: var(--yellow);
+
+    font-size: 37px;
+
+    line-height: 1.1;
+
+}
+
+
+.cta-right {
+
+    max-width: 510px;
+
+}
+
+
+.cta-right p {
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* =========================================================
+   CTA BUTTONS
+========================================================= */
+
+.cta-buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+
+/* COMMON BUTTON STYLE */
+
+.cta-buttons .btn {
+
+    min-height: 46px;
+
+    padding: 0 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .6px;
+
+    border-radius: 3px;
+
+    cursor: pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+/* =========================================================
+   YELLOW BUTTON
+========================================================= */
+
+.cta-buttons .btn-yellow {
+
+    background: var(--yellow);
+
+    color: #07385f;
+
+    border: 1px solid var(--yellow);
+
+}
+
+
+.cta-buttons .btn-yellow:hover {
+
+    background: #ffffff;
+
+    color: #07385f;
+
+    border-color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+
+}
+
+
+/* YELLOW BUTTON ICON */
+
+.cta-buttons .btn-yellow i {
+
+    font-size: 12px;
+
+    color: inherit;
+
+}
+
+
+/* =========================================================
+   OUTLINE BUTTON
+========================================================= */
+
+.cta-buttons .btn-outline {
+
+    background: transparent;
+
+    color: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, .85);
+
+}
+
+
+.cta-buttons .btn-outline:hover {
+
+    background: #ffffff;
+
+    color: #07385f;
+
+    border-color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+
+}
+
+
+/* OUTLINE BUTTON ICON */
+
+.cta-buttons .btn-outline i {
+
+    font-size: 12px;
+
+    color: inherit;
+
+}
+
+
+/* =========================================================
+   BUTTON ACTIVE
+========================================================= */
+
+.cta-buttons .btn:active {
+
+    transform: translateY(0);
+
+}
+
+
+/* =========================================================
+   CTA MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .cta-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        justify-content: center;
+
+        padding: 30px 0;
+
+        gap: 20px;
+
+    }
+
+
+    .cta-title h2 {
+
+        font-size: 27px;
+
+    }
+
+
+    .cta-script {
+
+        font-size: 31px;
+
+    }
+
+
+    .cta-right {
+
+        max-width: 100%;
+
+    }
+
+
+    .cta-buttons {
+
+        width: 100%;
+
+        gap: 10px;
+
+    }
+
+
+    .cta-buttons .btn {
+
+        min-height: 44px;
+
+        padding: 0 16px;
+
+        font-size: 9px;
+
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .cta-buttons {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .cta-buttons .btn {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    background: #063e6d;
+
+    color: white;
+
+    padding: 30px 0;
+
+}
+
+
+.footer-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.2fr 1fr 1.1fr 1fr;
+
+    gap: 30px;
+
+}
+
+
+.footer-grid > div:not(:first-child) {
+
+    border-left: 1px solid rgba(255,255,255,.25);
+
+    padding-left: 28px;
+
+}
+
+
+.footer-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.footer-logo-icon {
+
+    font-size: 31px;
+
+}
+
+
+.footer-logo strong {
+
+    display: block;
+
+    font-size: 14px;
+
+}
+
+
+.footer-logo span {
+
+    display: block;
+
+    font-size: 7px;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.footer-brand > p {
+
+    font-size: 10px;
+
+    line-height: 1.7;
+
+    max-width: 210px;
+
+}
+
+
+.social-icons {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 15px;
+
+}
+
+
+.social-icons a {
+
+    width: 28px;
+
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: var(--dark-blue);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 12px;
+
+}
+
+
+.footer-column h3 {
+
+    font-size: 10px;
+
+    margin-bottom: 13px;
+
+}
+
+
+.footer-column > a {
+
+    display: block;
+
+    font-size: 9px;
+
+    margin-bottom: 8px;
+
+    color: #dce9f2;
+
+}
+
+
+.footer-property {
+
+    display: flex;
+
+    gap: 9px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.footer-property > i {
+
+    color: #61a936;
+
+    font-size: 14px;
+
+}
+
+
+.footer-property strong {
+
+    font-size: 9px;
+
+}
+
+
+.footer-property p {
+
+    font-size: 8px;
+
+    line-height: 1.5;
+
+    color: #d9e8f2;
+
+    margin-top: 4px;
+
+}
+
+
+.contact-item {
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    font-size: 9px;
+
+}
+
+
+.contact-item i {
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.small-property,
+.large-property,
+.explore-card {
+
+    transition: transform .35s ease;
+
+}
+
+
+.small-property:hover,
+.large-property:hover,
+.explore-card:hover {
+
+    transform: translateY(-5px);
+
+}
+
+
+.explore-card img {
+
+    transition: transform .4s ease;
+
+}
+
+
+.explore-card:hover img {
+
+    transform: scale(1.05);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .main-nav {
+
+        gap: 14px;
+
+    }
+
+    .main-nav a {
+
+        font-size: 8px;
+
+    }
+
+    .header-button {
+
+        padding: 10px;
+
+    }
+
+    .container {
+
+        width: 92%;
+
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .main-nav {
+
+        display: none;
+
+        position: absolute;
+
+        top: 75px;
+
+        left: 4%;
+
+        width: 92%;
+
+        background: var(--dark-blue);
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        padding: 20px;
+
+        border-radius: 5px;
+
+    }
+
+
+    .main-nav.show {
+
+        display: flex;
+
+    }
+
+
+    .main-nav a {
+
+        padding: 12px 0;
+
+        font-size: 11px;
+
+    }
+
+
+    .mobile-menu {
+
+        display: block;
+
+    }
+
+
+    .header-button {
+
+        margin-left: auto;
+
+    }
+
+
+    .hero-copy {
+
+        width: 70%;
+
+    }
+
+
+    .features-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        row-gap: 30px;
+
+    }
+
+
+    .feature:nth-child(3) {
+
+        border-right: 0;
+
+    }
+
+
+    .explore-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+
+    .activities-inner {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .activities-heading {
+
+        text-align: center;
+
+    }
+
+
+    .footer-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        row-gap: 35px;
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .site-header {
+
+        padding: 14px 0;
+
+    }
+
+
+    .logo {
+
+        min-width: auto;
+
+    }
+
+
+    .header-button {
+
+        display: none;
+
+    }
+
+
+    .hero {
+
+        min-height: 620px;
+
+        background-position: 62% center;
+
+    }
+
+
+    .hero-copy {
+
+        width: 100%;
+
+        padding-top: 70px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 46px;
+
+    }
+
+
+    .hero-copy p {
+
+        font-size: 12px;
+
+    }
+
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .booking-wrapper {
+
+        margin-top: -20px;
+
+    }
+
+
+    .booking-bar {
+
+        grid-template-columns: 1fr;
+
+        padding: 20px;
+
+    }
+
+
+    .booking-button {
+
+        width: 100%;
+
+    }
+
+
+    .welcome-section {
+
+        padding-top: 60px;
+
+    }
+
+
+    .welcome-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+
+    }
+
+
+    .welcome-content {
+
+        padding-left: 0;
+
+    }
+
+
+    .welcome-properties {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .property-image {
+
+        height: 240px;
+
+    }
+
+
+    .features-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .feature {
+
+        border-right: 0;
+
+    }
+
+
+    .property-large-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .large-property {
+
+        height: 450px;
+
+    }
+
+
+    .large-property-image {
+
+        width: 100%;
+
+        height: 100%;
+
+    }
+
+
+    .large-property-content {
+
+        width: 58%;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,.15) 100%
+            ),
+            var(--blue);
+
+        top: auto;
+
+        bottom: 0;
+
+        height: 58%;
+
+        width: 100%;
+
+    }
+
+
+    .large-property-content.green {
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,.15) 100%
+            ),
+            var(--dark-green);
+
+    }
+
+
+    .explore-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .activity-list {
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 20px;
+
+        row-gap: 25px;
+
+    }
+
+
+    .activity {
+
+        border-right: 0;
+
+    }
+
+
+    .cta-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        justify-content: center;
+
+        padding: 30px 0;
+
+    }
+
+
+    .cta-title h2 {
+
+        font-size: 27px;
+
+    }
+
+
+    .cta-script {
+
+        font-size: 31px;
+
+    }
+
+
+    .footer-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .footer-grid > div:not(:first-child) {
+
+        border-left: 0;
+
+        border-top: 1px solid rgba(255,255,255,.2);
+
+        padding-left: 0;
+
+        padding-top: 25px;
+
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .features-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .explore-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .activity-list {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .cta-buttons {
+
+        flex-direction: column;
+
+        width: 100%;
+
+    }
+
+}
+
+
+
+
+
+/* =========================================================
+   OUR ACCOMMODATION
+========================================================= */
+
+.accommodation-section {
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 100px 0 110px;
+
+    background: #f7f9f8;
+
+    overflow: hidden;
+
+}
+
+
+.accommodation-container {
+
+    width: min(1380px, 92%);
+
+    margin: auto;
+
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.accommodation-heading {
+
+    text-align: center;
+
+    max-width: 760px;
+
+    margin: 0 auto 42px;
+
+}
+
+
+.accommodation-eyebrow {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #0d82bd;
+
+    font-family: "Pacifico", cursive;
+
+    font-size: 20px;
+
+}
+
+
+.accommodation-heading h2 {
+
+    margin: 0;
+
+    color: #123452;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 48px;
+
+    line-height: 1.05;
+
+    font-weight: 600;
+
+}
+
+
+.accommodation-heading h2 span {
+
+    font-family: "Pacifico", cursive;
+
+    color: #f5b900;
+
+    font-size: 43px;
+
+    font-weight: 400;
+
+}
+
+
+.accommodation-heading p {
+
+    max-width: 650px;
+
+    margin: 18px auto 0;
+
+    color: #526476;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   PROPERTY SWITCHER
+========================================================= */
+
+.property-switcher {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 35px;
+
+    border-bottom: 1px solid #d8e0e4;
+
+}
+
+
+.property-tab {
+
+    position: relative;
+
+    min-width: 300px;
+
+    padding: 18px 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    background: transparent;
+
+    border: none;
+
+    cursor: pointer;
+
+    color: #687985;
+
+    text-align: left;
+
+}
+
+
+.property-tab::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -1px;
+
+    left: 15%;
+
+    right: 15%;
+
+    height: 3px;
+
+    background: #f5b900;
+
+    transform: scaleX(0);
+
+    transition: .3s ease;
+
+}
+
+
+.property-tab.active {
+
+    color: #123452;
+
+}
+
+
+.property-tab.active::after {
+
+    transform: scaleX(1);
+
+}
+
+
+.tab-number {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 26px;
+
+    color: #0d82bd;
+
+}
+
+
+.property-tab strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    letter-spacing: .8px;
+
+}
+
+
+.property-tab small {
+
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    color: #84919a;
+
+}
+
+
+/* =========================================================
+   PROPERTY
+========================================================= */
+
+.accommodation-property {
+
+    display: none;
+
+    animation: accommodationFade .6s ease;
+
+}
+
+
+.accommodation-property.active {
+
+    display: block;
+
+}
+
+
+@keyframes accommodationFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   APARTMENT SELECTOR
+========================================================= */
+
+.apartment-selector {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.apartment-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #d7e0e4;
+
+    background: white;
+
+    color: #123452;
+
+    cursor: pointer;
+
+    border-radius: 4px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.apartment-btn span {
+
+    color: #0d82bd;
+
+}
+
+
+.apartment-btn small {
+
+    font-size: 9px;
+
+    font-weight: 400;
+
+    color: #71808a;
+
+}
+
+
+.apartment-btn.active {
+
+    background: #07385f;
+
+    border-color: #07385f;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   MAIN SHOWCASE
+========================================================= */
+
+.accommodation-showcase {
+
+    display: grid;
+
+    grid-template-columns: 1.45fr .85fr;
+
+    min-height: 510px;
+
+    background: white;
+
+    box-shadow: 0 18px 45px rgba(19, 52, 77, .10);
+
+}
+
+
+/* =========================================================
+   MAIN IMAGE
+========================================================= */
+
+.accommodation-main-image {
+
+    position: relative;
+
+    min-height: 510px;
+
+    overflow: hidden;
+
+}
+
+
+.accommodation-main-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    min-height: 510px;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform .8s ease;
+
+}
+
+
+.accommodation-main-image:hover img {
+
+    transform: scale(1.03);
+
+}
+
+
+/* =========================================================
+   IMAGE COUNTER
+========================================================= */
+
+.image-counter {
+
+    position: absolute;
+
+    left: 25px;
+
+    bottom: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    z-index: 3;
+
+}
+
+
+.image-counter i {
+
+    width: 35px;
+
+    height: 1px;
+
+    background: white;
+
+}
+
+
+/* =========================================================
+   IMAGE ARROWS
+========================================================= */
+
+.gallery-arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 44px;
+
+    height: 44px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.7);
+
+    background: rgba(0,40,70,.45);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+
+    z-index: 4;
+
+}
+
+
+.gallery-arrow:hover {
+
+    background: #f5b900;
+
+    color: #123452;
+
+    border-color: #f5b900;
+
+}
+
+
+.gallery-prev {
+
+    left: 20px;
+
+}
+
+
+.gallery-next {
+
+    right: 20px;
+
+}
+
+
+/* =========================================================
+   INFORMATION
+========================================================= */
+
+.accommodation-info {
+
+    padding: 55px 48px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+
+.info-location {
+
+    color: #0d82bd;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.accommodation-info h3 {
+
+    margin: 0;
+
+    color: #123452;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 42px;
+
+    line-height: 1.05;
+
+    font-weight: 600;
+
+}
+
+
+.info-script {
+
+    color: #f5b900;
+
+    font-family: "Pacifico", cursive;
+
+    font-size: 30px;
+
+    margin: 5px 0 18px;
+
+}
+
+
+.wharf-script {
+
+    color: #12aeb5;
+
+}
+
+
+.accommodation-info p {
+
+    color: #566a78;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin: 0 0 25px;
+
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.accommodation-features {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px 10px;
+
+    margin-bottom: 28px;
+
+}
+
+
+.accommodation-features div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #27465c;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+}
+
+
+.accommodation-features i {
+
+    color: #0d82bd;
+
+    font-size: 15px;
+
+    width: 20px;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.accommodation-button {
+
+    width: max-content;
+
+    min-height: 44px;
+
+    padding: 0 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background: #07385f;
+
+    color: white;
+
+    border-radius: 3px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition: .3s ease;
+
+}
+
+
+.accommodation-button:hover {
+
+    background: #f5b900;
+
+    color: #123452;
+
+    transform: translateY(-2px);
+
+}
+
+
+.wharf-button {
+
+    background: #10aeb5;
+
+}
+
+
+.wharf-button:hover {
+
+    background: #07385f;
+
+    color: white;
+
+}
+
+
+/* =========================================================
+   ROOM GALLERY
+========================================================= */
+
+.room-gallery {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 10px;
+
+    margin-top: 12px;
+
+}
+
+
+.room-thumb {
+
+    position: relative;
+
+    height: 105px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    border-radius: 3px;
+
+}
+
+
+.room-thumb img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: .4s ease;
+
+}
+
+
+.room-thumb::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,.65),
+        transparent 55%
+    );
+
+}
+
+
+.room-thumb span {
+
+    position: absolute;
+
+    left: 12px;
+
+    bottom: 10px;
+
+    z-index: 2;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+.room-thumb:hover img {
+
+    transform: scale(1.08);
+
+}
+
+
+.room-thumb.active {
+
+    outline: 3px solid #f5b900;
+
+    outline-offset: -3px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .accommodation-showcase {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .accommodation-main-image {
+
+        min-height: 450px;
+
+    }
+
+    .accommodation-main-image img {
+
+        min-height: 450px;
+
+    }
+
+    .accommodation-info {
+
+        padding: 40px;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .accommodation-section {
+
+        padding: 70px 0;
+
+    }
+
+
+    .accommodation-heading h2 {
+
+        font-size: 38px;
+
+    }
+
+
+    .accommodation-heading h2 span {
+
+        font-size: 34px;
+
+    }
+
+
+    .property-switcher {
+
+        flex-direction: column;
+
+        border-bottom: none;
+
+    }
+
+
+    .property-tab {
+
+        width: 100%;
+
+        min-width: 0;
+
+        border-bottom: 1px solid #ddd;
+
+    }
+
+
+    .apartment-selector {
+
+        overflow-x: auto;
+
+    }
+
+
+    .apartment-btn {
+
+        flex-shrink: 0;
+
+    }
+
+
+    .accommodation-main-image {
+
+        min-height: 330px;
+
+    }
+
+
+    .accommodation-main-image img {
+
+        min-height: 330px;
+
+    }
+
+
+    .accommodation-info {
+
+        padding: 32px 25px;
+
+    }
+
+
+    .accommodation-info h3 {
+
+        font-size: 34px;
+
+    }
+
+
+    .info-script {
+
+        font-size: 25px;
+
+    }
+
+
+    .room-gallery {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .room-thumb {
+
+        height: 110px;
+
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .accommodation-features {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .room-gallery {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+}
